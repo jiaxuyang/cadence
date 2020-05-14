@@ -72,3 +72,11 @@ func (s *UpdateSchemaTestSuite) TestVisibilityDryrun() {
 	dir := "../../schema/cassandra/visibility/versioned"
 	s.RunDryrunTest(buildCLIOptions(), client, "-k", dir, cassandra.VisibilityVersion)
 }
+
+func (s *UpdateSchemaTestSuite) TestShortcut() {
+	client, err := newTestCQLClient(s.DBName)
+	s.Nil(err)
+	defer client.Close()
+	dir := "../../schema/cassandra/cadence/versioned"
+	s.RunShortcutTest(buildCLIOptions(), client, "-k", dir, "cqlsh", "-e", "DESC KEYSPACE %s;")
+}
