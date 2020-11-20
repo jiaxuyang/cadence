@@ -224,7 +224,7 @@ func (tr *taskReader) isTaskExpired(t *persistence.TaskInfo, now time.Time) bool
 }
 
 func (tr *taskReader) isIdle(lastWriteTime time.Time) bool {
-	return !tr.isTaskAddedRecently(lastWriteTime) && len(tr.tlMgr.GetAllPollerInfo()) == 0
+	return !tr.isTaskAddedRecently(lastWriteTime)
 }
 
 func (tr *taskReader) handleIdleTimeout() {
