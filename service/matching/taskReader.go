@@ -164,6 +164,8 @@ getTasksPumpLoop:
 					}
 					// keep going as saving ack is not critical
 				}
+				// run gc periodically
+				tr.tlMgr.taskGC.RunNow(tr.tlMgr.taskAckManager.getAckLevel())
 				tr.Signal() // periodically signal pump to check persistence for tasks
 				updateAckTimer = time.NewTimer(tr.tlMgr.config.UpdateAckInterval())
 			}
