@@ -224,8 +224,9 @@ func (w *workflowResetorImpl) scheduleUnstartedActivities(msBuilder mutableState
 			return nil, &workflow.InternalServiceError{Message: "started activities should have been failed."}
 		}
 		t := &persistence.ActivityTask{
-			DomainID:   exeInfo.DomainID,
-			TaskList:   exeInfo.TaskList,
+			DomainID: exeInfo.DomainID,
+			//TaskList:   exeInfo.TaskList,
+			TaskList:   ai.TaskList,
 			ScheduleID: ai.ScheduleID,
 		}
 		tasks = append(tasks, t)
